@@ -1,0 +1,22 @@
+{
+  "name": "homeworker-desktop",
+  "version": "1.0.3",
+  "description": "Desktop app for Windows and MacOS",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon.icns --asar --prune=true --out=release-builds",
+    "package-windows": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='Homeworker'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:xolf-ug/homeworker/desktop.git"
+  },
+  "author": "Rasmus Krämer",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.0",
+    "electron-packager": "^15.0.0"
+  }
+}
