@@ -1,9 +1,16 @@
-document.addEventListener('websocketMessage|type:chat.message.created', (event) => {
-    let documentChatId = document.getElementById('chat-id');
-    if (documentChatId && documentChatId.textContent == event.message.payload.message.chat_id)
-        return
+document.addEventListener('websocketMessage|type:fcm-message', (event) => {
+    if(Notification.permission == "granted") {
+      const { notification, data } = event.message.payload
   
-    if(Notification.permission != "granted")
-      console.log(event.message)
+      console.log(window.location.pathname);
+  
+      if(data.link && window.location.href == data.link) return
+      const notificationObject = new Notification(notification.title, { body, icon, tag } = notification)
+  
+      notificationObject.addEventListener("click", () => {
+        if(data.link) window.location = data.link
+        notificationObject.close()
+      })
+    }
   })
   

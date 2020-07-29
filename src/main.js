@@ -1,16 +1,18 @@
 const { app, BrowserWindow, shell } = require('electron')
-const { setup: setupPushReceiver } = require('electron-push-receiver');
-const path = require("path");
+const { setup: setupPushReceiver } = require('electron-push-receiver')
+const path = require("path")
+const os = require("os")
 
+const isMac = os.type().toLocaleLowerCase() == "darwin"
 const url = "https://homeworker.li/auth/login"
 const options = {
   show: false,
   title: "Homeworker",
-  frame: false,
+  frame: isMac,
   titleBarStyle: "hiddenInset",
 
   webPreferences: {
-     // preload: path.join(__dirname, "preload.js"), Push Support
+     preload: path.join(__dirname, "preload.js"),
   },
 
   width: 1000,
@@ -26,7 +28,7 @@ const createWindow = () => {
 
   setupPushReceiver(win.webContents);
 
-  win.webContents.on('did-finish-load', () => win.webContents.insertCSS('.side-nav { -webkit-app-region: drag }'))
+  win.webContents.on('did-finish-load', () => win.webContents.insertCSS(isMac ? '.side-nav { -webkit-app-region: drag }' : ""))
   win.webContents.on('new-window', (event, url) => {
     event.preventDefault()
     shell.openExternal(url)
