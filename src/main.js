@@ -1,5 +1,4 @@
 const { app, BrowserWindow, shell } = require('electron')
-const { setup: setupPushReceiver } = require('electron-push-receiver')
 const path = require("path")
 const os = require("os")
 
@@ -25,8 +24,6 @@ let win
 const createWindow = () => {
   win = new BrowserWindow(options)
   win.loadURL(url)
-
-  setupPushReceiver(win.webContents);
 
   win.webContents.on('did-finish-load', () => win.webContents.insertCSS(isMac ? '.side-nav { -webkit-app-region: drag }' : ""))
   win.webContents.on('new-window', (event, url) => {
