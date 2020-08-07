@@ -2,9 +2,11 @@
 A desktop app for [homeworker.li](https://homeworker.li)
 
 ### Build / Release
-1. Change version number
-2. Commit changes
-3. Tag the commit with a version (`v1.2.3`)
+1. Merge `dev` → `live`
+2. Change version number in `package.json`
+3. Commit changes to `live`
+4. Push changes to Github
+5. Wait for the Action to finish
 
 ### Start
 To start the app (development) run `npm run start`
