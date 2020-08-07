@@ -1,7 +1,21 @@
-release-builds
 
-# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudio,node,webstorm
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,visualstudio,node,webstorm
+# Created by https://www.toptal.com/developers/gitignore/api/node,linux,macos,windows,webstorm,visualstudio,git
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,macos,windows,webstorm,visualstudio,git
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### Linux ###
 *~
@@ -237,12 +251,15 @@ fabric.properties
 # *.ipr
 
 # Sonarlint plugin
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
 .idea/**/sonarlint/
 
 # SonarQube Plugin
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
 .idea/**/sonarIssues.xml
 
 # Markdown Navigator plugin
+# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
 .idea/**/markdown-navigator.xml
 .idea/**/markdown-navigator-enh.xml
 .idea/**/markdown-navigator/
@@ -250,6 +267,10 @@ fabric.properties
 # Cache file creation bug
 # See https://youtrack.jetbrains.com/issue/JBR-2257
 .idea/$CACHE_FILE$
+
+# CodeStream plugin
+# https://plugins.jetbrains.com/plugin/12206-codestream
+.idea/codestream.xml
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -629,4 +650,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudio,node,webstorm
+# End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,windows,webstorm,visualstudio,git
