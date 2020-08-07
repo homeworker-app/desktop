@@ -1,6 +1,11 @@
 # Homeworker Desktop
 A desktop app for [homeworker.li](https://homeworker.li)
 
+### Build / Release
+1. Change version number
+2. Commit changes
+3. Tag the commit with a version (`v1.2.3`)
+
 ### Start
 To start the app (development) run `npm run start`
 
