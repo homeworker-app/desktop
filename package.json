@@ -1,6 +1,6 @@
 {
   "name": "homeworker-desktop",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {
