@@ -23,6 +23,7 @@
     "eslint-plugin-import": "^2.22.0"
   },
   "dependencies": {
+    "electron-updater": "^4.3.4",
     "update-electron-app": "^1.5.0"
   },
   "build": {
