@@ -1,13 +1,13 @@
 {
   "name": "homeworker-desktop",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "lint": "npx eslint ./src/main.js && npx eslint ./src/preload.js"
   },
   "repository": {
     "type": "git",
@@ -17,12 +17,15 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^5.0.0",
-    "electron-builder": "^22.8.0"
+    "electron-builder": "^22.8.0",
+    "eslint": "^7.8.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   },
   "dependencies": {
+    "electron-updater": "^4.3.4",
     "update-electron-app": "^1.5.0"
   },
-
   "build": {
     "appId": "info.xolf.homeworker",
     "productName": "Homeworker",
@@ -30,12 +33,11 @@
     "compression": "normal",
     "asar": true,
     "extends": null,
-
     "linux": {
-        "target": "zip"
+      "target": "zip"
     },
     "win": {
-        "target": "nsis"
+      "target": "nsis"
     }
   }
 }

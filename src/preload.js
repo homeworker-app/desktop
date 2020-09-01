@@ -1,16 +1,15 @@
 document.addEventListener('websocketMessage|type:fcm-message', (event) => {
-    if(Notification.permission == "granted") {
-      const { notification, data } = event.message.payload
+  if(Notification.permission == "granted") {
+    const { notification, data } = event.message.payload
   
-      console.log(window.location.pathname);
+    if(data.link && window.location.href == data.link) return
+    if(notification.icon) notification.icon = null
+
+    const notificationObject = new Notification(notification.title, notification)
   
-      if(data.link && window.location.href == data.link) return
-      const notificationObject = new Notification(notification.title, { body, icon, tag } = notification)
-  
-      notificationObject.addEventListener("click", () => {
-        if(data.link) window.location = data.link
-        notificationObject.close()
-      })
-    }
-  })
-  
+    notificationObject.addEventListener("click", () => {
+      if(data.link) window.location = data.link
+      notificationObject.close()
+    })
+  }
+})

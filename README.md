@@ -1,3 +1,6 @@
+![Build/release](https://github.com/homeworker-app/desktop/workflows/Build/release/badge.svg?branch=master)
+![lint](https://github.com/homeworker-app/desktop/workflows/lint/badge.svg?branch=dev)
+
 # Homeworker Desktop
 A desktop app for [homeworker.li](https://homeworker.li)
 
