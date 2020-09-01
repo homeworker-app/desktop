@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-
     "dist": "electron-builder"
   },
   "repository": {
@@ -22,7 +21,6 @@
   "dependencies": {
     "update-electron-app": "^1.5.0"
   },
-
   "build": {
     "appId": "info.xolf.homeworker",
     "productName": "Homeworker",
@@ -30,12 +28,11 @@
     "compression": "normal",
     "asar": true,
     "extends": null,
-
     "linux": {
-        "target": "zip"
+      "target": "zip"
     },
     "win": {
-        "target": "nsis"
+      "target": "nsis"
     }
   }
 }
