@@ -1,6 +1,6 @@
 {
   "name": "homeworker-desktop",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "appId": "info.xolf.homeworker",
     "productName": "Homeworker",
     "copyright": "Copyright © 2020 Homeworker GmbH",
-    
+
     "compression": "normal",
     "asar": true,
     "extends": null,
