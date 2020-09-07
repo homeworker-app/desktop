@@ -16,10 +16,9 @@
   "author": "Rasmus Krämer",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^5.0.0",
+    "electron": "^10.1.1",
     "electron-builder": "^22.8.0",
-    "eslint": "^7.8.0",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint": "^7.8.1",
     "eslint-plugin-import": "^2.22.0"
   },
   "dependencies": {
@@ -38,6 +37,13 @@
     },
     "win": {
       "target": "nsis"
+    },
+    "mac": {
+      "entitlements": "build/entitlements.mac.plist",
+      "extendInfo": {
+        "NSCameraUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu sehen zu sein musst du deine Kamera aktivieren",
+        "NSMicrophoneUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu hören zu sein musst du deine Kamera aktivieren"
+      }
     }
   }
 }

@@ -43,7 +43,7 @@ const createWindow = () => {
       if(parsedUrl.host.toLowerCase() == "redirect.homeworker.li")
         shell.openExternal(url)
       else
-        win.loadURL("url")
+        win.loadURL(url)
     } catch(error) {
       shell.openExternal(url)
     }
