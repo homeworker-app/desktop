@@ -18,6 +18,7 @@
   "devDependencies": {
     "electron": "^10.1.1",
     "electron-builder": "^22.8.0",
+    "electron-builder-notarize": "^1.2.0",
     "eslint": "^7.8.1",
     "eslint-plugin-import": "^2.22.0"
   },
@@ -29,9 +30,12 @@
     "appId": "info.xolf.homeworker",
     "productName": "Homeworker",
     "copyright": "Copyright © 2020 Homeworker GmbH",
+    
     "compression": "normal",
     "asar": true,
     "extends": null,
+    "afterSign": "electron-builder-notarize",
+
     "linux": {
       "target": "zip"
     },
@@ -40,6 +44,7 @@
     },
     "mac": {
       "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
       "hardenedRuntime": true,
       "extendInfo": {
         "NSCameraUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu sehen zu sein musst du deine Kamera aktivieren",
