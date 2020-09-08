@@ -9,7 +9,7 @@ const startUrl = "https://homeworker.li/auth/login"
 const options = {
   show: false,
   title: "Homeworker",
-  frame: isDarwin,
+  frame: !isDarwin,
   titleBarStyle: "hiddenInset",
 
   webPreferences: {
@@ -25,10 +25,12 @@ const options = {
 
 let win
 
+app.setUserTasks([])
 autoUpdater.checkForUpdatesAndNotify()
 
 const createWindow = () => {
   win = new BrowserWindow(options)
+  win.setMenu(null)
   win.loadURL(startUrl)
 
   // Make sidebar draggable (on MacOS)
