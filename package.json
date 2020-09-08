@@ -30,12 +30,10 @@
     "appId": "info.xolf.homeworker",
     "productName": "Homeworker",
     "copyright": "Copyright © 2020 Homeworker GmbH",
-
     "compression": "normal",
     "asar": true,
     "extends": null,
     "afterSign": "electron-builder-notarize",
-
     "linux": {
       "target": "zip"
     },
