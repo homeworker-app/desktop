@@ -47,7 +47,6 @@
       "entitlements": "build/entitlements.mac.plist",
       "entitlementsInherit": "build/entitlements.mac.plist",
       "category": "public.app-category.education",
-      "identity": null,
       "hardenedRuntime": true,
       "extendInfo": {
         "NSCameraUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu sehen zu sein musst du deine Kamera aktivieren",
