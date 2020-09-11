@@ -25,7 +25,6 @@ const options = {
 
 let win
 
-app.setUserTasks([])
 autoUpdater.checkForUpdatesAndNotify()
 
 const createWindow = () => {
