@@ -54,14 +54,15 @@
         "NSMicrophoneUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu hören zu sein musst du deine Kamera aktivieren"
       },
       "target": "mas"
+    },
+    "appx": {
+      "applicationId": "info.xolf.homeworker",
+      "displayName": "Homeworker"
+    },
+    "mas": {
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "hardenedRuntime": false
     }
-  },
-  "mas": {
-    "entitlements": "build/entitlements.mac.plist",
-    "entitlementsInherit": "build/entitlements.mac.plist",
-    "hardenedRuntime": false
-  },
-  "appx": {
-    "applicationId": "info.xolf.homeworker"
   }
 }
