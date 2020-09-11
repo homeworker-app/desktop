@@ -46,16 +46,22 @@
     "mac": {
       "entitlements": "build/entitlements.mac.plist",
       "entitlementsInherit": "build/entitlements.mac.plist",
+      "category": "public.app-category.education",
+      "identity": null,
       "hardenedRuntime": true,
       "extendInfo": {
         "NSCameraUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu sehen zu sein musst du deine Kamera aktivieren",
         "NSMicrophoneUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu hören zu sein musst du deine Kamera aktivieren"
       },
-      "target": [
-        "zip",
-        "dmg",
-        "mas"
-      ]
+      "target": "mas"
     }
+  },
+  "mas": {
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist",
+    "hardenedRuntime": false
+  },
+  "appx": {
+    "applicationId": "info.xolf.homeworker"
   }
 }
