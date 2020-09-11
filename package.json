@@ -33,12 +33,15 @@
     "compression": "normal",
     "asar": true,
     "extends": null,
-    "afterSign": "electron-builder-notarize",
     "linux": {
       "target": "zip"
     },
     "win": {
-      "target": "nsis"
+      "target": [
+        "nsis",
+        "portable",
+        "appx"
+      ]
     },
     "mac": {
       "entitlements": "build/entitlements.mac.plist",
@@ -47,7 +50,12 @@
       "extendInfo": {
         "NSCameraUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu sehen zu sein musst du deine Kamera aktivieren",
         "NSMicrophoneUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu hören zu sein musst du deine Kamera aktivieren"
-      }
+      },
+      "target": [
+        "zip",
+        "dmg",
+        "mas"
+      ]
     }
   }
 }
