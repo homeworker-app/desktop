@@ -1,6 +1,6 @@
 {
   "name": "homeworker-desktop",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {
@@ -53,13 +53,13 @@
         "NSMicrophoneUsageDescription": "Um beim Onlineuntericht (Jitsi Meet) zu hören zu sein musst du deine Kamera aktivieren"
       },
       "target": [
-				"dmg",
-				"zip"
+        "dmg",
+        "zip"
       ],
       "electronLanguages": [
-				"de",
-				"de_DE"
-			]
+        "de",
+        "de_DE"
+      ]
     },
     "appx": {
       "applicationId": "info.xolf.homeworker",
