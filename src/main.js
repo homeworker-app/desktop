@@ -49,7 +49,7 @@ const createWindow = () => {
       shell.openExternal(url)
     }
   })
-  
+
   win.on('closed', () => win = null)
   win.once('ready-to-show', () => win.show())
 }
