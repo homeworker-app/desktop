@@ -6,18 +6,16 @@ A desktop app for [homeworker.li](https://homeworker.li)
 
 ### Build / Release
 1. Change version number in `package.json` in `dev`
-2. Merge `dev` → `master`
-3. Release new Version as tag with format `v0.0.0`
+2. Release new Version as tag with format `v0.0.0`
+3. Merge `dev` → `master`
 4. Wait for the Action to finish
 
 ### Start
 To start the app (development) run `npm run start`
 
 ### Package
-To package the app (produktion) run the following commands:
-- MacOS: `npm run package-mac`
-- Windows: `npm run package-windows`
+To package the app locally run `npm run dist`
 
 ### Branches
-- `dev` - development branch of the app, where all feature branchs got merged into
-- `master` - the current released version
+- `dev` - not released, work in progress, changes
+- `master` - the current version
