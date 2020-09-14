@@ -33,6 +33,7 @@
     "compression": "normal",
     "asar": true,
     "extends": null,
+    "afterSign": "electron-builder-notarize",
     "linux": {
       "target": "zip"
     },
