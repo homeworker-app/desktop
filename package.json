@@ -1,6 +1,6 @@
 {
   "name": "homeworker-desktop",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {
@@ -33,6 +33,7 @@
     "compression": "normal",
     "asar": true,
     "extends": null,
+    "afterSign": "electron-builder-notarize",
     "linux": {
       "target": "zip"
     },
