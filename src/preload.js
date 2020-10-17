@@ -3,7 +3,6 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
     const { notification, data } = event.message.payload
   
     if(data.link && window.location.href == data.link) return
-    if(notification.icon) notification.icon = null
 
     const notificationObject = new Notification(notification.title, notification)
   
