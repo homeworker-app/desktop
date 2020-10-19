@@ -4,8 +4,6 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
   
     if(data.link && window.location.href == data.link) return
 
-    console.log(notification, data);
-
     const notificationObject = new Notification(notification.title, data)
   
     notificationObject.addEventListener("click", () => {
