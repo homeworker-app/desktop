@@ -13,4 +13,5 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
   }
 })
 
+/* eslint-disable no-console */
 console.log("Registered preload script")
