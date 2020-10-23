@@ -25,6 +25,7 @@ const options = {
 
 let win
 
+// eslint-disable-next-line no-use-before-define
 autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
 
 const createWindow = () => {
