@@ -3,9 +3,8 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
     const { notification, data } = event.message.payload
   
     if(data.link && window.location.href == data.link) return
-    if(notification.icon) notification.icon = null
 
-    const notificationObject = new Notification(notification.title, notification)
+    const notificationObject = new Notification(notification.title, data)
   
     notificationObject.addEventListener("click", () => {
       if(data.link) window.location = data.link
@@ -13,3 +12,6 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
     })
   }
 })
+
+/* eslint-disable no-console */
+console.log("Registered preload script")

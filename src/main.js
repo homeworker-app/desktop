@@ -25,9 +25,10 @@ const options = {
 
 let win
 
-const createWindow = () => {
-  autoUpdater.checkForUpdatesAndNotify();
+/* eslint-disable no-console, arrow-parens */
+autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
 
+const createWindow = () => {
   win = new BrowserWindow(options)
   win.setMenu(null)
   win.loadURL(startUrl)
