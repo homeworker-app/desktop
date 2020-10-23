@@ -25,7 +25,17 @@ const options = {
 
 let win
 
-autoUpdater.checkForUpdatesAndNotify()
+/*
+autoUpdater.setFeedURL({
+  provider: "github",
+  owner: "homeworker-app",
+  private: false,
+  protocol: "https",
+  repo: "desktop",
+  vPrefixedTagName: false,
+})
+*/
+autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
 
 const createWindow = () => {
   win = new BrowserWindow(options)
