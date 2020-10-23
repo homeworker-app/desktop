@@ -6,7 +6,7 @@ A desktop app for [homeworker.li](https://homeworker.li)
 
 ### Build / Release
 1. Change version number in `package.json` in `dev`
-2. Release new Version as tag with format `v0.0.0` **THE `v` MUST BE THERE**
+2. Release new Version as tag with format `0.0.0` **WITHOUT `v`**
 3. Merge `dev` → `master`
 4. Wait for the Action to finish
 
