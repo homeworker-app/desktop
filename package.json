@@ -1,5 +1,6 @@
 {
   "name": "homeworker-desktop",
+  "maintainers": ["support@homeworker.li"],
   "productName": "Homeworker",
   "version": "1.1.12",
   "description": "Desktop app for Windows and MacOS",
@@ -14,7 +15,11 @@
     "type": "git",
     "url": "https://github.com/homeworker-app/desktop.git"
   },
-  "author": "Rasmus Krämer",
+  "author": {
+    "name": "Rasmus Krämer",
+    "url": "https://rasmuslos.de",
+    "email": "support@homeworker.li"
+  },
   "license": "ISC",
   "devDependencies": {
     "electron": "^10.1.1",
