@@ -36,7 +36,11 @@
     "extends": null,
     "afterSign": "electron-builder-notarize",
     "linux": {
-      "target": "zip"
+      "target": [
+        "AppImage",
+        "deb",
+        "snap"
+      ]
     },
     "win": {
       "target": [
