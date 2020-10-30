@@ -5,7 +5,7 @@ const os = require("os")
 
 // On macOS we can make a frameless app where the sidebar is drageable. Windows sucks so we can't to this here
 const isDarwin = os.type().toLocaleLowerCase() == "darwin"
-const startUrl = "https://homeworker.li/auth/login"
+const startUrl = "https://homeworker.li/app-start"
 const options = {
   show: false,
   title: "Homeworker",
