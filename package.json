@@ -4,14 +4,14 @@
     "support@homeworker.li"
   ],
   "productName": "Homeworker",
-  "version": "1.1.13",
+  "version": "1.1.14",
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
+    "start:dev": "START_URL=http://localhost:8080 electron .",
     "dist": "electron-builder",
-    "lint": "npx eslint ./src/main.js && npx eslint ./src/preload.js"
+    "lint": "npx eslint ./src/"
   },
   "repository": {
     "type": "git",
