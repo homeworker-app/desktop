@@ -13,5 +13,7 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
   }
 })
 
+window.addEventListener("load", () => window ? window.desktop = { call: true } : console.error("window is missing"))
+
 /* eslint-disable no-console */
 console.log("Registered preload script")
