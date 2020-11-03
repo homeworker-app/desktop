@@ -8,8 +8,8 @@
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
+    "start:dev": "START_URL=http://localhost:8080 electron .",
     "dist": "electron-builder",
     "lint": "npx eslint ./src/"
   },
