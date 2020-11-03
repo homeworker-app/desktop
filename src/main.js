@@ -5,6 +5,7 @@ const os = require("os")
 
 // On macOS we can make a frameless app where the sidebar is drageable. Windows sucks so we can't to this here
 const isDarwin = os.type().toLocaleLowerCase() == "darwin"
+/* eslint-disable no-process-env */
 const startUrl = process.env.START_URL || "https://homeworker.li/app-start"
 const options = {
   show: false,

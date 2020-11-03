@@ -13,6 +13,7 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
   }
 })
 
+/* eslint-disable no-console */
 window.addEventListener("load", () => window ? window.desktop = { call: true } : console.error("window is missing"))
 
 /* eslint-disable no-console */
