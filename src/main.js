@@ -35,7 +35,7 @@ const createWindow = () => {
   win.loadURL(startUrl)
 
   // Make sidebar draggable (on MacOS)
-  win.webContents.on('did-finish-load', () => isDarwin ? win.webContents.insertCSS('.navigation_wrapper .desktop, #main-content { -webkit-app-region: drag }') : null)
+  win.webContents.on('did-finish-load', () => isDarwin ? win.webContents.insertCSS('.navigation_wrapper .desktop, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }') : null)
   win.webContents.on('new-window', (event, url) => {
     event.preventDefault()
 
