@@ -29,28 +29,30 @@ let win
 /* eslint-disable no-console, arrow-parens */
 autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
 
+const navigate = (event, url) => {
+  event.preventDefault()
+
+  // A error occurs when the url is invalid (no http:// etc.)
+  try {
+    const parsedUrl = new URL(url)
+
+    if(parsedUrl.host.toLowerCase() == "redirect.homeworker.li")
+      shell.openExternal(url)
+    else
+      win.loadURL(url)
+  } catch(error) {
+    shell.openExternal(url)
+  }
+}
 const createWindow = () => {
   win = new BrowserWindow(options)
   win.setMenu(null)
   win.loadURL(startUrl)
 
   // Make sidebar draggable (on MacOS)
-  win.webContents.on('did-finish-load', () => isDarwin ? win.webContents.insertCSS('.navigation_wrapper .desktop, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }') : null)
-  win.webContents.on('new-window', (event, url) => {
-    event.preventDefault()
-
-    // A error occurs when the url is invalid (no http:// etc.)
-    try {
-      const parsedUrl = new URL(url)
-
-      if(parsedUrl.host.toLowerCase() == "redirect.homeworker.li")
-        shell.openExternal(url)
-      else
-        win.loadURL(url)
-    } catch(error) {
-      shell.openExternal(url)
-    }
-  })
+  win.webContents.on("did-finish-load", () => isDarwin ? win.webContents.insertCSS('.navigation_wrapper .desktop, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }') : null)
+  win.webContents.on("will-navigate", navigate)
+  win.webContents.on("new-window", navigate)
 
   win.on('closed', () => win = null)
   win.once('ready-to-show', () => win.show())
