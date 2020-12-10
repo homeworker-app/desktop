@@ -2,7 +2,7 @@
 ![lint](https://github.com/homeworker-app/desktop/workflows/lint/badge.svg?branch=dev)
 
 # Homeworker Desktop
-A desktop app for [homeworker.li](https://homeworker.li)
+Desktop app for [homeworker.li](https://homeworker.li)
 
 ### Build / Release
 1. Change version number in `package.json` in `dev`
@@ -11,7 +11,7 @@ A desktop app for [homeworker.li](https://homeworker.li)
 4. Wait for the Action to finish
 
 ### Start
-To start the app (development) run `npm run start`
+To start the app (development) run `npm run start:dev` or add `START_URL` env var
 
 ### Package
 To package the app locally run `npm run dist`
