@@ -2,6 +2,7 @@ const { app, BrowserWindow, shell, session } = require('electron')
 const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const os = require("os")
+const fs = require('fs')
 
 // On macOS we can make a frameless app where the sidebar is drageable. Windows sucks so we can't to this here
 const isDarwin = os.type().toLocaleLowerCase() == "darwin"
@@ -50,7 +51,16 @@ const createWindow = () => {
   win.loadURL(startUrl)
 
   // Make sidebar draggable (on MacOS)
-  win.webContents.on("did-finish-load", () => isDarwin ? win.webContents.insertCSS('.navigation_wrapper .desktop, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }') : null)
+  win.webContents.on("did-finish-load", () => {
+    if(isDarwin)
+      win.webContents.insertCSS(".navigation_wrapper .desktop, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }")
+
+    fs.readFile(`${__dirname}/style/screenPicker.css`, "utf-8", (error, data) => {
+      if(error) console.error(error)
+      
+      win.webContents.insertCSS(data.replace(/\s{2,10}/g, ' ').trim())
+    })
+  })
   win.webContents.on("will-navigate", navigate)
   win.webContents.on("new-window", navigate)
 
