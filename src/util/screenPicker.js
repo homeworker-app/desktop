@@ -1,12 +1,14 @@
 const { desktopCapturer } = require('electron')
 
 const getDisplayMedia = () => {
+    /* eslint-disable no-async-promise-executor */
     return new Promise(async (resolve, reject) => {
         try {
             const sources = await (await desktopCapturer.getSources({ types: ['screen', 'window'] })).filter(({thumbnail}) => thumbnail.toDataURL().length != 22)
             const selectionHolder = document.createElement('div')
 
             selectionHolder.classList = 'desktop-capturer-selection'
+            /* eslint-disable no-unused-vars */
             selectionHolder.innerHTML = `
                 <div class="desktop-capturer-selection__scroller">
                     <ul class="desktop-capturer-selection__list">
@@ -46,7 +48,7 @@ const getDisplayMedia = () => {
                 selectionHolder.remove()
               } catch (error) {
                 console.error("Error selecting desktop capture source:", error)
-                reject(err)
+                reject(error)
               }
             })
           })
