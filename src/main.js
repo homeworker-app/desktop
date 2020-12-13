@@ -17,6 +17,7 @@ const options = {
   webPreferences: {
     // eslint-disable-line
     preload: path.join(__dirname, "preload.js"),
+    webSecurity: false,
   },
 
   width: 1000,
@@ -48,7 +49,7 @@ const navigate = (event, url) => {
 const createWindow = () => {
   win = new BrowserWindow(options)
   win.setMenu(null)
-  win.loadURL(startUrl)
+  win.loadURL(startUrl, { userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" })
 
   // Make sidebar draggable (on MacOS)
   win.webContents.on("did-finish-load", () => {
