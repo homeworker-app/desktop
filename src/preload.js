@@ -1,5 +1,4 @@
 const { getDisplayMedia } = require("./util/screenPicker")
-const { start } = require("./util/domObserver")
 
 document.addEventListener('websocketMessage|type:fcm-message', (event) => {
   if(Notification.permission == "granted") {
@@ -21,9 +20,7 @@ window.addEventListener("load", () => {
   window.desktop = { call: true }
   window.navigator.mediaDevices.getDisplayMedia = getDisplayMedia
 
-  // Fuck it
-  // start(() => document.querySelectorAll("iframe").forEach(iframe => iframe.contentWindow.navigator.mediaDevices.getDisplayMedia = getDisplayMedia))
-
+  // The dom-observer didn't work
   setInterval(() => document.querySelectorAll("iframe").forEach(iframe => iframe.contentWindow.navigator.mediaDevices.getDisplayMedia = getDisplayMedia), 500)
 })
 
