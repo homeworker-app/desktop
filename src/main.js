@@ -1,4 +1,4 @@
-const { app, BrowserWindow, shell } = require('electron')
+const { app, BrowserWindow, shell, session } = require('electron')
 const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const os = require("os")
@@ -56,6 +56,8 @@ const createWindow = () => {
 
   win.on('closed', () => win = null)
   win.once('ready-to-show', () => win.show())
+
+  session.fromPartition("default").setPermissionRequestHandler((webContents, permission, callback) => callback(true))
 }
 
 app.on('window-all-closed', () => isDarwin ? null : app.quit())

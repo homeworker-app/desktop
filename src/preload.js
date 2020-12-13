@@ -13,6 +13,11 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
   }
 })
 
+const getScreen = () => alert("Sorry, screen sharing ist aktuell deaktiviert")
+
+navigator.mediaDevices.getUserMedia = getScreen
+navigator.getUserMedia = getScreen
+
 /* eslint-disable no-console */
 window.addEventListener("load", () => window ? window.desktop = { call: true } : console.error("window is missing"))
 
