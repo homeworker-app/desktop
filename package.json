@@ -11,7 +11,8 @@
     "start": "electron .",
     "start:dev": "START_URL=http://localhost:8080 electron .",
     "dist": "electron-builder",
-    "lint": "npx eslint ./src/"
+    "lint": "npx eslint ./src/",
+    "format": "prettier --write src/"
   },
   "repository": {
     "type": "git",
