@@ -1,3 +1,4 @@
+const os = require("os")
 const { getDisplayMedia } = require("./util/screenPicker")
 
 document.addEventListener('websocketMessage|type:fcm-message', (event) => {
@@ -17,7 +18,10 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
 
 /* eslint-disable no-console */
 window.addEventListener("load", () => {
-  window.desktop = { call: true }
+  window.desktop = global.desktop = {
+    call: true,
+    darwin: os.type().toLocaleLowerCase() == "darwin",
+  }
   window.navigator.mediaDevices.getDisplayMedia = getDisplayMedia
 
   // The dom-observer didn't work
