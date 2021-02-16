@@ -19,7 +19,7 @@
   },
   "author": {
     "name": "Rasmus Krämer",
-    "url": "https://rasmuslos.de",
+    "url": "https://rfk.io",
     "email": "support@homeworker.li"
   },
   "license": "ISC",
@@ -37,7 +37,8 @@
   "build": {
     "appId": "info.xolf.homeworker",
     "productName": "Homeworker",
-    "copyright": "Copyright © 2020 Homeworker GmbH",
+    "darkModeSupport": true,
+    "copyright": "Copyright © 2021 Homeworker GmbH",
     "compression": "normal",
     "asar": true,
     "extends": null,
