@@ -54,7 +54,7 @@ const createWindow = () => {
   // Make sidebar draggable (on MacOS)
   win.webContents.on("did-finish-load", () => {
     if(isDarwin)
-      win.webContents.insertCSS(".navigation_wrapper .desktop, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }")
+      win.webContents.insertCSS(".navigation_wrapper *, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }")
 
     fs.readFile(`${__dirname}/style/screenPicker.css`, "utf-8", (error, data) => {
       if(error) console.error(error)
