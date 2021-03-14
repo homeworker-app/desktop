@@ -1,13 +1,13 @@
+const os = require("os")
 const { getDisplayMedia } = require("./util/screenPicker")
 
 document.addEventListener('websocketMessage|type:fcm-message', (event) => {
-  if(Notification.permission == "granted") {
+  if(Notification.permission === "granted") {
     const { notification, data } = event.message.payload
   
-    if(data.link && window.location.href == data.link) return
+    if(data.link && window.location.href === data.link) return
 
     const notificationObject = new Notification(notification.title, data)
-  
     notificationObject.addEventListener("click", () => {
       if(data.link) window.location = data.link
       notificationObject.close()
@@ -17,7 +17,10 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
 
 /* eslint-disable no-console */
 window.addEventListener("load", () => {
-  window.desktop = { call: true }
+  window.desktop = {
+    call: true,
+    darwin: os.type().toLocaleLowerCase() === "darwin",
+  }
   window.navigator.mediaDevices.getDisplayMedia = getDisplayMedia
 
   // The dom-observer didn't work

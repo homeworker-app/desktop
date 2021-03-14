@@ -1,11 +1,11 @@
-const { app, BrowserWindow, shell, session } = require('electron')
+const { app, BrowserWindow, shell } = require('electron')
 const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const os = require("os")
 const fs = require('fs')
 
 // On macOS we can make a frameless app where the sidebar is drageable. Windows sucks so we can't to this here
-const isDarwin = os.type().toLocaleLowerCase() == "darwin"
+const isDarwin = os.type().toLocaleLowerCase() === "darwin"
 /* eslint-disable no-process-env */
 const startUrl = process.env.START_URL || "https://homeworker.li/app-start"
 const options = {
@@ -27,6 +27,7 @@ const options = {
 }
 
 let win
+let splash
 
 /* eslint-disable no-console, arrow-parens */
 autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
@@ -38,7 +39,7 @@ const navigate = (event, url) => {
   try {
     const parsedUrl = new URL(url)
 
-    if(parsedUrl.host.toLowerCase() == "redirect.homeworker.li")
+    if(parsedUrl.host.toLowerCase() === "redirect.homeworker.li")
       shell.openExternal(url)
     else
       win.loadURL(url)
@@ -54,7 +55,7 @@ const createWindow = () => {
   // Make sidebar draggable (on MacOS)
   win.webContents.on("did-finish-load", () => {
     if(isDarwin)
-      win.webContents.insertCSS(".navigation_wrapper .desktop, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }")
+      win.webContents.insertCSS(".navigation_wrapper *, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }")
 
     fs.readFile(`${__dirname}/style/screenPicker.css`, "utf-8", (error, data) => {
       if(error) console.error(error)
@@ -66,9 +67,19 @@ const createWindow = () => {
   win.webContents.on("new-window", navigate)
 
   win.on('closed', () => win = null)
-  win.once('ready-to-show', () => win.show())
+  win.once('ready-to-show', () => {
+    splash.destroy()
+    win.show()
+  })
 
-  session.fromPartition("default").setPermissionRequestHandler((webContents, permission, callback) => callback(true))
+  splash = new BrowserWindow({
+    width: 810,
+    height: 610,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true
+  })
+  splash.loadURL(`file://${__dirname}/util/splash.html`)
 }
 
 app.on('window-all-closed', () => isDarwin ? null : app.quit())
