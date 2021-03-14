@@ -53,7 +53,7 @@
       "target": [
         "nsis",
         "portable",
-        "appx",
+        "appx"
       ],
       "arch": [
         "ia32",
