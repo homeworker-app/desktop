@@ -37,7 +37,6 @@
   "build": {
     "appId": "info.xolf.homeworker",
     "productName": "Homeworker",
-    "darkModeSupport": true,
     "copyright": "Copyright © 2021 Homeworker GmbH",
     "compression": "normal",
     "asar": true,
