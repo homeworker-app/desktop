@@ -1,4 +1,4 @@
-const { app, BrowserWindow, shell, session } = require('electron')
+const { app, BrowserWindow, shell } = require('electron')
 const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const os = require("os")
@@ -80,8 +80,6 @@ const createWindow = () => {
     alwaysOnTop: true
   })
   splash.loadURL(`file://${__dirname}/util/splash.html`)
-
-  // session.fromPartition("default").setPermissionRequestHandler((webContents, permission, callback) => callback(true))
 }
 
 app.on('window-all-closed', () => isDarwin ? null : app.quit())

@@ -17,7 +17,7 @@ document.addEventListener('websocketMessage|type:fcm-message', (event) => {
 
 /* eslint-disable no-console */
 window.addEventListener("load", () => {
-  window.desktop = global.desktop = {
+  window.desktop = {
     call: true,
     darwin: os.type().toLocaleLowerCase() === "darwin",
   }
