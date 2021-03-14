@@ -5,7 +5,7 @@ const os = require("os")
 const fs = require('fs')
 
 // On macOS we can make a frameless app where the sidebar is drageable. Windows sucks so we can't to this here
-const isDarwin = os.type().toLocaleLowerCase() == "darwin"
+const isDarwin = os.type().toLocaleLowerCase() === "darwin"
 /* eslint-disable no-process-env */
 const startUrl = process.env.START_URL || "https://homeworker.li/app-start"
 const options = {
@@ -38,7 +38,7 @@ const navigate = (event, url) => {
   try {
     const parsedUrl = new URL(url)
 
-    if(parsedUrl.host.toLowerCase() == "redirect.homeworker.li")
+    if(parsedUrl.host.toLowerCase() === "redirect.homeworker.li")
       shell.openExternal(url)
     else
       win.loadURL(url)
@@ -68,7 +68,9 @@ const createWindow = () => {
   win.on('closed', () => win = null)
   win.once('ready-to-show', () => win.show())
 
-  session.fromPartition("default").setPermissionRequestHandler((webContents, permission, callback) => callback(true))
+  win.on("", console.log)
+
+  // session.fromPartition("default").setPermissionRequestHandler((webContents, permission, callback) => callback(true))
 }
 
 app.on('window-all-closed', () => isDarwin ? null : app.quit())
