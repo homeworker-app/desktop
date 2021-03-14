@@ -53,8 +53,11 @@
       "target": [
         "nsis",
         "portable",
-        "appx",
-        "ia32"
+        "appx"
+      ],
+      "arch": [
+        "ia32",
+        "x64"
       ]
     },
     "mac": {
