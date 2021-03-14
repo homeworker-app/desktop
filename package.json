@@ -54,7 +54,10 @@
         "nsis",
         "portable",
         "appx",
-        "ia32"
+      ],
+      "arch": [
+        "ia32",
+        "x64"
       ]
     },
     "mac": {
