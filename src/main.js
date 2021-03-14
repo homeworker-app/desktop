@@ -27,6 +27,7 @@ const options = {
 }
 
 let win
+let splash
 
 /* eslint-disable no-console, arrow-parens */
 autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
@@ -66,9 +67,19 @@ const createWindow = () => {
   win.webContents.on("new-window", navigate)
 
   win.on('closed', () => win = null)
-  win.once('ready-to-show', () => win.show())
+  win.once('ready-to-show', () => {
+    splash.destroy()
+    win.show()
+  })
 
-  win.on("", console.log)
+  splash = new BrowserWindow({
+    width: 810,
+    height: 610,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true
+  })
+  splash.loadURL(`file://${__dirname}/util/splash.html`)
 
   // session.fromPartition("default").setPermissionRequestHandler((webContents, permission, callback) => callback(true))
 }
