@@ -51,13 +51,15 @@
     },
     "win": {
       "target": [
-        "nsis",
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
         "portable",
         "appx"
-      ],
-      "arch": [
-        "ia32",
-        "x64"
       ]
     },
     "mac": {
