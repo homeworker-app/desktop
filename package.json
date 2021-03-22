@@ -47,7 +47,8 @@
         "AppImage",
         "deb",
         "snap"
-      ]
+      ],
+      "icon": "build/96x96.png"
     },
     "win": {
       "target": [
@@ -67,6 +68,7 @@
       "entitlementsInherit": "build/entitlements.mac.plist",
       "category": "public.app-category.education",
       "hardenedRuntime": true,
+      "icon": "build/icon.icns",
       "extendInfo": {
         "NSCameraUsageDescription": "Gewähre uns Zugriff auf deine Kamera um an Konferenzen mit Bild teilnehmen zu können. Deine Kamera wird ausschließlich zu diesem Zweck verwendet",
         "NSMicrophoneUsageDescription": "Gewähre uns Zugriff auf dein Mikrofon um an Konferenzen mit Ton teilnehmen zu können. Dein Mikrofon wird ausschließlich zu diesem Zweck verwendet"
