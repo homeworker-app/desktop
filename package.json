@@ -48,7 +48,7 @@
         "deb",
         "snap"
       ],
-      "icon": "build/96x96.png"
+      "icon": "build/288x288.png"
     },
     "win": {
       "target": [
