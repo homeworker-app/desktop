@@ -68,8 +68,8 @@
       "category": "public.app-category.education",
       "hardenedRuntime": true,
       "extendInfo": {
-        "NSCameraUsageDescription": "Die kamera wird ausschließlich verwendet um am Videoanrufen teilzunehmen",
-        "NSMicrophoneUsageDescription": "Das Mikrofon wird ausschließlich verwendet um am Anrufen teilzunehmen"
+        "NSCameraUsageDescription": "Gewähre uns Zugriff auf deine Kamera um an Konferenzen mit Bild teilnehmen zu können. Deine Kamera wird ausschließlich zu diesem Zweck verwendet",
+        "NSMicrophoneUsageDescription": "Gewähre uns Zugriff auf dein Mikrofon um an Konferenzen mit Ton teilnehmen zu können. Dein Mikrofon wird ausschließlich zu diesem Zweck verwendet"
       },
       "target": [
         "dmg",
