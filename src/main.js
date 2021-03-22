@@ -12,7 +12,7 @@ const options = {
   show: false,
   title: "Homeworker",
   frame: !isDarwin,
-  titleBarStyle: "hiddenInset",
+  titleBarStyle: "hidden",
 
   webPreferences: {
     // eslint-disable-line
