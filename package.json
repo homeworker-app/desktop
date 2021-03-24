@@ -4,7 +4,7 @@
     "support@homeworker.li"
   ],
   "productName": "Homeworker",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "Desktop app for Windows and MacOS",
   "main": "src/main.js",
   "scripts": {

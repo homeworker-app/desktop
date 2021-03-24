@@ -1,4 +1,4 @@
-const { app, BrowserWindow, shell } = require('electron')
+const { app, BrowserWindow, shell, systemPreferences } = require('electron')
 const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const os = require("os")
@@ -67,9 +67,16 @@ const createWindow = () => {
   win.webContents.on("new-window", navigate)
 
   win.on('closed', () => win = null)
-  win.once('ready-to-show', () => {
+  win.once('ready-to-show', async () => {
     splash.destroy()
     win.show()
+
+    try {
+      await systemPreferences.askForMediaAccess("microphone")
+      await systemPreferences.askForMediaAccess("camera")
+    } catch (error) {
+      console.error("Failed to get media access", error)
+    }
   })
 
   splash = new BrowserWindow({
