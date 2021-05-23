@@ -9,7 +9,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "start:dev": "START_URL=http://localhost:8080 electron .",
+    "start:dev": "START_URL=http://localhost:8080/app-start electron .",
     "dist": "electron-builder",
     "lint": "npx eslint ./src/"
   },
@@ -31,6 +31,7 @@
     "eslint-plugin-import": "^2.22.0"
   },
   "dependencies": {
+    "electron-store": "^7.0.3",
     "electron-updater": "^4.3.4",
     "update-electron-app": "^1.5.0"
   },

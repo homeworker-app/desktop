@@ -1,35 +1,16 @@
-const { app, BrowserWindow, shell, systemPreferences } = require('electron')
+const { app, BrowserWindow, shell, systemPreferences, Notification, ipcMain } = require('electron')
 const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const os = require("os")
 const fs = require('fs')
 
-// On macOS we can make a frameless app where the sidebar is drageable. Windows sucks so we can't to this here
 const isDarwin = os.type().toLocaleLowerCase() === "darwin"
-/* eslint-disable no-process-env */
 const startUrl = process.env.START_URL || "https://homeworker.li/app-start"
-const options = {
-  show: false,
-  title: "Homeworker",
-  frame: !isDarwin,
-  titleBarStyle: "hidden",
-
-  webPreferences: {
-    // eslint-disable-line
-    preload: path.join(__dirname, "preload.js"),
-    webSecurity: false,
-  },
-
-  width: 1000,
-  minWidth: 901,
-  height: 750,
-  minHeight: 500,
-}
+let showedUnread = false
 
 let win
 let splash
 
-/* eslint-disable no-console, arrow-parens */
 autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
 
 const navigate = (event, url) => {
@@ -48,11 +29,26 @@ const navigate = (event, url) => {
   }
 }
 const createWindow = () => {
-  win = new BrowserWindow(options)
+  win = new BrowserWindow({
+    show: false,
+    title: "Homeworker",
+    frame: !isDarwin,
+    titleBarStyle: "hidden",
+
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      webSecurity: false,
+    },
+
+    width: 1000,
+    minWidth: 901,
+    height: 750,
+    minHeight: 500,
+  })
   win.setMenu(null)
   win.loadURL(startUrl, { userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" })
 
-  // Make sidebar draggable (on MacOS)
+  // Inject css to allow users to drag the sidebar
   win.webContents.on("did-finish-load", () => {
     if(isDarwin)
       win.webContents.insertCSS(".navigation_wrapper *, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }")
@@ -63,6 +59,8 @@ const createWindow = () => {
       win.webContents.insertCSS(data.replace(/\s{2,10}/g, ' ').trim())
     })
   })
+
+  // Open external links in browser
   win.webContents.on("will-navigate", navigate)
   win.webContents.on("new-window", navigate)
 
@@ -79,6 +77,11 @@ const createWindow = () => {
     }
   })
 
+  new Notification({
+    title: "Request access",
+    body: "This is not visible",
+  })
+
   splash = new BrowserWindow({
     width: 810,
     height: 610,
@@ -88,6 +91,27 @@ const createWindow = () => {
   })
   splash.loadURL(`file://${__dirname}/util/splash.html`)
 }
+
+ipcMain.handle("unread_notifications", (event, data) => {
+  const { unreadNotifications, unreadChatMessages } = data
+
+  if(unreadNotifications == null || unreadChatMessages == null || typeof unreadNotifications != "number" || typeof unreadChatMessages != "number") return
+
+  app.setBadgeCount(unreadNotifications + unreadChatMessages)
+
+  if(showedUnread || unreadNotifications <= 0 || unreadChatMessages <= 0) return
+  const message =
+      unreadNotifications <= 0 ? `Du hast ${unreadChatMessages} ungelesenen Chatnachrichten`
+      : unreadChatMessages <= 0 ? `Du hast ${unreadNotifications} neue Benachrichtigungen`
+      : `Du hast ${unreadChatMessages} ungelesenen Chat-Nachrichten und ${unreadNotifications} neue Benachrichtigungen`
+
+  new Notification({
+    title: "Ungelesene Nachrichten",
+    body: message,
+    urgency: "low",
+  }).show()
+  showedUnread = true
+})
 
 app.on('window-all-closed', () => isDarwin ? null : app.quit())
 app.on('activate', () => win === null ? createWindow() : null)
