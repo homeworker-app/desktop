@@ -9,7 +9,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "start:dev": "START_URL=http://localhost:8080 electron .",
+    "start:dev": "START_URL=http://localhost:8080/app-start electron .",
     "dist": "electron-builder",
     "lint": "npx eslint ./src/"
   },

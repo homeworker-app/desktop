@@ -1,3 +1,4 @@
+const { ipcRenderer } = require("electron")
 const os = require("os")
 const { getDisplayMedia } = require("./util/screenPicker")
 
@@ -20,10 +21,7 @@ window.addEventListener("load", () => {
   window.desktop = {
     call: true,
     darwin: os.type().toLocaleLowerCase() === "darwin",
-    offerUnread: (unreadNotifications, unreadChatMessages) => {
-      // TODO: use ipc renderer to send this to main
-      console.log("Got unread", unreadNotifications, unreadChatMessages)
-    },
+    offerUnread: (unreadNotifications, unreadChatMessages) => ipcRenderer.invoke("unread_notifications", {unreadNotifications, unreadChatMessages}),
   }
   window.navigator.mediaDevices.getDisplayMedia = getDisplayMedia
 

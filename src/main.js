@@ -1,4 +1,4 @@
-const { app, BrowserWindow, shell, systemPreferences } = require('electron')
+const { app, BrowserWindow, shell, systemPreferences, Notification, ipcMain } = require('electron')
 const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const os = require("os")
@@ -6,6 +6,7 @@ const fs = require('fs')
 
 const isDarwin = os.type().toLocaleLowerCase() === "darwin"
 const startUrl = process.env.START_URL || "https://homeworker.li/app-start"
+let showedUnread = false
 
 let win
 let splash
@@ -76,6 +77,11 @@ const createWindow = () => {
     }
   })
 
+  new Notification({
+    title: "Request access",
+    body: "This is not visible",
+  })
+
   splash = new BrowserWindow({
     width: 810,
     height: 610,
@@ -85,6 +91,27 @@ const createWindow = () => {
   })
   splash.loadURL(`file://${__dirname}/util/splash.html`)
 }
+
+ipcMain.handle("unread_notifications", (event, data) => {
+  const { unreadNotifications, unreadChatMessages } = data
+
+  if(unreadNotifications == null || unreadChatMessages == null || typeof unreadNotifications != "number" || typeof unreadChatMessages != "number") return
+
+  app.setBadgeCount(unreadNotifications + unreadChatMessages)
+
+  if(showedUnread || unreadNotifications <= 0 || unreadChatMessages <= 0) return
+  const message =
+      unreadNotifications <= 0 ? `Du hast ${unreadChatMessages} ungelesenen Chatnachrichten`
+      : unreadChatMessages <= 0 ? `Du hast ${unreadNotifications} neue Benachrichtigungen`
+      : `Du hast ${unreadChatMessages} ungelesenen Chat-Nachrichten und ${unreadNotifications} neue Benachrichtigungen`
+
+  new Notification({
+    title: "Ungelesene Nachrichten",
+    body: message,
+    urgency: "low",
+  }).show()
+  showedUnread = true
+})
 
 app.on('window-all-closed', () => isDarwin ? null : app.quit())
 app.on('activate', () => win === null ? createWindow() : null)
