@@ -4,19 +4,18 @@ const getDisplayMedia = () => {
     /* eslint-disable no-async-promise-executor */
     return new Promise(async (resolve, reject) => {
         try {
-            const sources = await (await desktopCapturer.getSources({ types: ['screen', 'window'] })).filter(({thumbnail}) => thumbnail.toDataURL().length != 22)
+            const sources = await (await desktopCapturer.getSources({ types: ['screen', 'window'] })).filter(({thumbnail}) => thumbnail.toDataURL().length !== 22)
             const selectionHolder = document.createElement('div')
 
             selectionHolder.classList = 'desktop-capturer-selection'
-            /* eslint-disable no-unused-vars */
             selectionHolder.innerHTML = `
                 <div class="desktop-capturer-selection__scroller">
                     <ul class="desktop-capturer-selection__list">
-                        ${sources.map(({id, name, thumbnail, display_id, appIcon}) => `
+                        ${sources.map(({id, name, thumbnail}) => `
                             <li class="desktop-capturer-selection__item">
                                 <button class="desktop-capturer-selection__btn" data-id="${id}" title="${name}">
-                                    <img class="desktop-capturer-selection__thumbnail" src="${thumbnail.toDataURL()}" />
-                                    <span class="desktop-capturer-selection__name">${name == "Entire Screen" ? "Ganzer Bildschrim" : name}</span>
+                                    <img alt="Screen ${id}" class="desktop-capturer-selection__thumbnail" src="${thumbnail.toDataURL()}" />
+                                    <span class="desktop-capturer-selection__name">${name === "Entire Screen" ? "Ganzer Bildschrim" : name}</span>
                                 </button>
                             </li>
                         `).join("")}

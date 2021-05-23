@@ -4,32 +4,12 @@ const path = require("path")
 const os = require("os")
 const fs = require('fs')
 
-// On macOS we can make a frameless app where the sidebar is drageable. Windows sucks so we can't to this here
 const isDarwin = os.type().toLocaleLowerCase() === "darwin"
-/* eslint-disable no-process-env */
 const startUrl = process.env.START_URL || "https://homeworker.li/app-start"
-const options = {
-  show: false,
-  title: "Homeworker",
-  frame: !isDarwin,
-  titleBarStyle: "hidden",
-
-  webPreferences: {
-    // eslint-disable-line
-    preload: path.join(__dirname, "preload.js"),
-    webSecurity: false,
-  },
-
-  width: 1000,
-  minWidth: 901,
-  height: 750,
-  minHeight: 500,
-}
 
 let win
 let splash
 
-/* eslint-disable no-console, arrow-parens */
 autoUpdater.checkForUpdatesAndNotify().catch(error => console.error(error))
 
 const navigate = (event, url) => {
@@ -48,11 +28,26 @@ const navigate = (event, url) => {
   }
 }
 const createWindow = () => {
-  win = new BrowserWindow(options)
+  win = new BrowserWindow({
+    show: false,
+    title: "Homeworker",
+    frame: !isDarwin,
+    titleBarStyle: "hidden",
+
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      webSecurity: false,
+    },
+
+    width: 1000,
+    minWidth: 901,
+    height: 750,
+    minHeight: 500,
+  })
   win.setMenu(null)
   win.loadURL(startUrl, { userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" })
 
-  // Make sidebar draggable (on MacOS)
+  // Inject css to allow users to drag the sidebar
   win.webContents.on("did-finish-load", () => {
     if(isDarwin)
       win.webContents.insertCSS(".navigation_wrapper *, #main-content { -webkit-app-region: drag } #main-content * { -webkit-app-region: no-drag }")
@@ -63,6 +58,8 @@ const createWindow = () => {
       win.webContents.insertCSS(data.replace(/\s{2,10}/g, ' ').trim())
     })
   })
+
+  // Open external links in browser
   win.webContents.on("will-navigate", navigate)
   win.webContents.on("new-window", navigate)
 
