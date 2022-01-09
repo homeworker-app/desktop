@@ -101,12 +101,12 @@ ipcMain.handle("unread_notifications", (event, data) => {
 
   if(showedUnread || unreadNotifications <= 0 || unreadChatMessages <= 0) return
   const message =
-      unreadNotifications <= 0 ? `Du hast ${unreadChatMessages} ungelesenen Chatnachrichten`
-      : unreadChatMessages <= 0 ? `Du hast ${unreadNotifications} neue Benachrichtigungen`
-      : `Du hast ${unreadChatMessages} ungelesenen Chat-Nachrichten und ${unreadNotifications} neue Benachrichtigungen`
+      unreadNotifications <= 0 ? `Du hast ${unreadChatMessages} ungelesene Chatnachricht${unreadChatMessages==1?"":"en"}`
+      : unreadChatMessages <= 0 ? `Du hast ${unreadNotifications} neue Benachrichtigung${unreadNotifications==1?"":"en"}`
+      : `Du hast ${unreadChatMessages} ungelesene Chat-Nachricht${unreadChatMessages==1?"":"en"} und ${unreadNotifications} neue Benachrichtigung${unreadNotifications==1?"":"en"}`
 
   new Notification({
-    title: "Ungelesene Nachrichten",
+    title: `Ungelesene Nachricht${unreadChatMessages + unreadNotifications == 1 ? "" : "en"}`,
     body: message,
     urgency: "low",
   }).show()
